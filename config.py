@@ -1,0 +1,1 @@
+SECRET_KEY = 'I just want a girl friend'
