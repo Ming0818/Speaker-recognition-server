@@ -1,4 +1,5 @@
 from collections import Counter
+import numpy as np
 
 class EmitStack(object):
 	"""docstring for EmitStack"""
@@ -12,14 +13,18 @@ class EmitStack(object):
 		self.emitArr.append(item)
 		self.emitCounter += 1
 
-	def canEmit(self):
-	 	return self.emitCounter >= self.emitHeight
+	def extend(self, arr, length):
+		self.emitArr.extend(arr)
+		self.emitCounter += length
+
+	def canEmit(self, frameRate):
+	 	return self.emitCounter >= self.emitHeight * frameRate
 
 	def emitLabel(self):
-		emitLabel = Counter(self.emitArr).most_common(1)[0][0]
+		emitLabel = np.array(self.emitArr)
 		self.emitCounter = 0
 		self.emitArr = []
-		print emitLabel
+		
 		return emitLabel
 		
 
